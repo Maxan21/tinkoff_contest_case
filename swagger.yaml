@@ -9,41 +9,51 @@ paths:
       tags:
         - Clients
       operationId: GETstatus
-      parameters:
+      parameters: 
         - name: client_id
           in: path
           required: true
           description: client id
-          schema:
+          schema: 
             type: integer
             example: 123456789012345673
-      responses:
+      responses:  
         "200":
           description: Current status of the client
           content:
-            application/json:
+            application/json: 
               schema:
                 $ref: "#/components/schemas/Client"
-  /Clients/Block/{client_id}:
+  /Clients/Block/{client_id}/{status}:
     post:
       summary: Block client by id
       tags:
         - Clients
-      parameters:
+      parameters: 
         - name: client_id
           in: path
           required: true
           description: client id
-          schema:
+          schema: 
             type: integer
             example: 123456789012345673
+        - name: status
+          in: path
+          required: true
+          description: status
+          schema: 
+            type: string
+            enum:
+              - Block_fraud
+              - Block_temporary
+          
       requestBody:
         required: true
         content:
-          application/json:
+          application/json: 
             schema:
               $ref: "#/components/schemas/Client"
-      responses:
+      responses:  
         "200":
           description: Success
   /Clients/UnBlock/{client_id}:
@@ -51,15 +61,15 @@ paths:
       summary: UnBlock client by id
       tags:
         - Client
-      parameters:
+      parameters: 
         - name: client_id
           in: path
           required: true
           description: client id
-          schema:
+          schema: 
             type: integer
             example: 123456789012345673
-      responses:
+      responses:  
         "200":
           description: Unblocked
           content:
@@ -71,7 +81,7 @@ components:
       required:
         - client_id
         - status
-      properties:
+      properties: 
         client_id:
           type: integer
           example: 123456789012345673
@@ -84,7 +94,8 @@ components:
         type: array
         items:
           $ref: "#/components/schemas/Clients"
-
-
-
-
+    
+          
+        
+          
+  
